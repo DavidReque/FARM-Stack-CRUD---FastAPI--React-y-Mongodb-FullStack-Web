@@ -14,14 +14,14 @@ async def get_tasks():
 async def create_tasks():
     return 'create tasks'
 
-@app.get(f'/api/tasks/{id}')
+@app.get('/api/tasks/{id}')
 async def get_tasks():
     return 'single tasks'
 
-@app.put(f'/api/tasks/{id}')
+@app.put('/api/tasks/{id}')
 async def update_tasks():
     return 'updating tasks'
 
-@app.delete(f'/api/tasks/{id}')
+@app.delete('/api/tasks/{id}')
 async def delete_tasks():
     return 'delete tasks'
