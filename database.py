@@ -1,7 +1,7 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from models import Task
 
-client = AsyncIOMotorClient('')
+client = AsyncIOMotorClient('mongodb://localhost:27017')
 database = client.taskdatabase
 collection = database.tasks
 

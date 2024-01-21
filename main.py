@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from database import get_all_task
 
 app = FastAPI()
 
@@ -8,7 +9,8 @@ async def welcome():
 
 @app.get('/api/tasks')
 async def get_tasks():
-    return 'all tasks'
+    tasks = await get_all_task()
+    return tasks
 
 @app.post('/api/tasks')
 async def create_tasks():
