@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from database import get_all_task, create_task, get_one_task
+from database import get_all_task, create_task, get_one_task, get_one_task_id, delete_task
 from models import Task
 
 app = FastAPI()
@@ -25,14 +25,20 @@ async def create_tasks(task: Task):
         return response
     raise HTTPException(400, "Algo salio mal")
 
-@app.get('/api/tasks/{id}')
-async def get_tasks():
-    return 'single tasks'
+@app.get('/api/tasks/{id}', response_model=Task)
+async def get_tasks(id: str):
+    task = await get_one_task_id(id)
+    if task:
+        return task
+    raise HTTPException(404, f'Tarea con id {id} no encontrada')
 
 @app.put('/api/tasks/{id}')
 async def update_tasks():
     return 'updating tasks'
 
 @app.delete('/api/tasks/{id}')
-async def delete_tasks():
-    return 'delete tasks'
+async def delete_tasks(id: str):
+    response = await delete_task(id)
+    if response:
+        return "Se elimino la tarea"
+    raise HTTPException(404, f'Tarea con id {id} no encontrada')
