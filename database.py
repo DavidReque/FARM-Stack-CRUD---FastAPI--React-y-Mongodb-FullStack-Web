@@ -1,14 +1,9 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from models import Task
 from bson import ObjectId
-from decouple import config
-
-origins = [
-    config('DATABASE_URL')
-]
 
 #client = AsyncIOMotorClient('mongodb://localhost:27017')
-client = AsyncIOMotorClient(origins)
+client = AsyncIOMotorClient('mongodb+srv://davidrequeno52:C4cV0tl4IYikAQtz@cluster0.h7av3kd.mongodb.net/?retryWrites=true&w=majority')
 database = client.taskdatabase
 collection = database.tasks
 
